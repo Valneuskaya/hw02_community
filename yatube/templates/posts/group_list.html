@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-{{ title }}
+"Здесь будет информация о группах проекта Yatube"
 {% endblock %}
 {% block content %}
 <!-- класс py-5 создает отступы сверху и снизу блока -->
@@ -11,9 +11,6 @@
       <li>
         {{ group.title }}
       </li>
-      <!-- <li>
-        {{ group.slug }}
-      </li> -->
     </ul>
     <p> {{ group.description }}</p>
     {% for post in posts %}

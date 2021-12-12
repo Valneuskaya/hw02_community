@@ -1,19 +1,18 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Post, Group
+from django.shortcuts import get_object_or_404, render
+
+from .models import Group, Post
 
 
 def index(request):
-    posts = Post.objects.order_by('-pub_date')[:10]
+    posts = Post.objects.all()[:10]
     template = 'posts/index.html'
-    title = "Это главная страница проекта Yatube"
-    context = {'posts': posts, 'title': title, }
+    context = {'posts': posts, }
     return render(request, template, context)
 
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    posts = Post.objects.filter(group=group).order_by('-pub_date')[:10]
+    posts = group.group_posts.all()[:10]
     template = 'posts/group_list.html'
-    title = "Здесь будет информация о группах проекта Yatube"
-    context = {'group': group, 'posts': posts, 'title': title, }
+    context = {'group': group, 'posts': posts, }
     return render(request, template, context)
