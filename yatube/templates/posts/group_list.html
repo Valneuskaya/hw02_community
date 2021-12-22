@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-"Здесь будет информация о группах проекта Yatube"
+Здесь будет информация о группах проекта Yatube
 {% endblock %}
 {% block content %}
 <!-- класс py-5 создает отступы сверху и снизу блока -->
@@ -13,7 +13,7 @@
       </li>
     </ul>
     <p> {{ group.description }}</p>
-    {% for post in posts %}
+    {% for post in page_obj %}
     <ul>
       <li>
         Автор: {{ post.author.get_full_name }}
@@ -26,6 +26,8 @@
     {% if not forloop.last %}<hr>
     {% endif %}
     {% endfor %}
+
+    {% include 'posts/includes/paginator.html' %}
   </article>
 </div>  
 {% endblock %}    

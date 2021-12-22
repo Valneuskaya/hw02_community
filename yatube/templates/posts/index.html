@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}
-"Это главная страница проекта Yatube"
+Это главная страница проекта Yatube
 {% endblock %}
 {% block content %}
 <!-- класс py-5 создает отступы сверху и снизу блока -->
 <div class="container py-5">
   <h1>Последние обновления на сайте</h1>
   <article>
-    {% for post in posts %}
+    {% for post in page_obj %}
     <ul>
       <li>
         Автор: {{ post.author.get_full_name }}
@@ -21,7 +21,9 @@
     {% endif %}
     {% if not forloop.last %}<hr>
     {% endif %}
+    
     {% endfor %}
+    {% include 'posts/includes/paginator.html' %}
   <!-- под последним постом нет линии -->
   </article>
 </div>  
