@@ -12,7 +12,7 @@
                 Войти на сайт
               </div>
               <div class="card-body">
-                <form method="post" action="../users/login.html">
+                <form method="post" {% url 'users:login' %}>
                   <input type="hidden" name="csrfmiddlewaretoken" value="">         
                   <div class="form-group row my-3">
                     <label for="id_username">
