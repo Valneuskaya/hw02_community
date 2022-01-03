@@ -45,15 +45,13 @@ def profile(request, username):
 
 
 def post_detail(request, post_id):
-    posts = get_object_or_404(Post, pk=post_id)
-    author = Post.objects.filter(author=request.user)
-    all_posts = User.objects.annotate(posts_count=Count('posts'))
-    title = 'Пост ' + posts.text[:30]
+    post = get_object_or_404(Post, pk=post_id)
+    count = Post.objects.filter(author=post.author).count()
+    title = 'Пост ' + post.text[:30]
     template = 'posts/post_detail.html'
     context = {
-        'posts': posts,
-        'all_posts': all_posts,
-        'author': author,
+        'post': post,
+        'count': count,
         'title': title,
     }
     return render(request, template, context)
