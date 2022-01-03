@@ -45,18 +45,15 @@ def profile(request, username):
 
 
 def post_detail(request, post_id):
-    # Здесь код запроса к модели и создание словаря контекста
-    group = get_object_or_404(Post, pk=post_id)
-    posts = group.group_posts.all()
-    paginator = Paginator(posts, 10)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    title = 'Пост '
+    posts = get_object_or_404(Post, pk=post_id)
+    author = Post.objects.filter(author=request.user)
+    all_posts = User.objects.annotate(posts_count=Count('posts'))
+    title = 'Пост ' + posts.text[:30]
     template = 'posts/post_detail.html'
     context = {
-        'title': title,
-        'page_obj': page_obj,
         'posts': posts,
-        'group': group,
+        'all_posts': all_posts,
+        'author': author,
+        'title': title,
     }
     return render(request, template, context)
