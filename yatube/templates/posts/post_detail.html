@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}
-{{title}} {{post.text|truncatechars:30}}
+{{title}} 
+{{post.text|truncatechars:30}}
 {% endblock %}
 {% block content %}
-  </head>
-  <body>       
-    <main>
       <div class="row">
         <aside class="col-12 col-md-3">
           <ul class="list-group list-group-flush">
@@ -15,7 +13,7 @@
             <!-- если у поста есть группа -->   
                 {% if post.group %}
                 <li class="list-group-item">
-                  Группа: {{groups.title}}
+                  Группа: {{group}}
                 
                 <p><a href="{% url 'posts:group_list' slug=post.group.slug %}">все записи группы </a></p>        
                 {% endif %}
@@ -32,10 +30,5 @@
         </aside>
         
       </div>
-    </li>
     {{post.text}}
-    </li>
-    </main>
-  </body>
-</html>
 {% endblock %}

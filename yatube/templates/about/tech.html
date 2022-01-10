@@ -14,9 +14,13 @@
     <ul class="list-group list-group-flush">
       <li class="list-group-item">
         Python
+        {% load static %}
+        <img src="{% static 'img/python.png' %}" width="350" height="200" class="d-inline-block align-top" alt="">
       </li>
       <li class="list-group-item">
         Django
+        {% load static %}
+        <img src="{% static 'img/django.png' %}" width="350" height="200" class="d-inline-block align-top" alt="">
       </li>
     </ul>
   </aside>
@@ -26,7 +30,7 @@
     и 75% при размерах экрана ≥768px
   {% endcomment %}
   <article class="col-12 col-md-9">
-    <p>Текст страницы "Технологии"</p>
+    <p>Это те технологии, которые я изучаю в Яндекс.Практикуме</p>
   </article>
 </div>
 {% endblock %}
